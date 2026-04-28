@@ -21,4 +21,5 @@ urlpatterns = [
     path('blog/', include('blog.urls')), 
     # include는 blog.urls 파일을 참고해서 화면에 보여지는 것을 다운로드 함
     path('admin/', admin.site.urls),
+    path('', include('single_pages.urls')),
 ]
