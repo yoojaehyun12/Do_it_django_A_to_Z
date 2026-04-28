@@ -14,3 +14,6 @@ class Post(models.Model):
         return f"[{self.pk}]{self.title}"
         # self.pk : 해당 포스트의 pk 값(pk:primary key의 약자)
         # self.title : 해당 포스트의 title 값
+    
+    def get_absoulte_url(self):
+        return f'/blog/{self.pk}/'
