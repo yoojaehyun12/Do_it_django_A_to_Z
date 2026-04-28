@@ -143,8 +143,7 @@ venvdjango/
 ENV/
 env.bak/
 venv.bak/
-123.zip/
-9주차.zip/
+*.zip
 
 # Spyder project settings
 .spyderproject
