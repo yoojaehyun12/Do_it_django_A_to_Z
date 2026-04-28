@@ -2,8 +2,11 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('<int:pk>/', views.single_post_page),
-    path('', views.index),
+    path('', views.PostList.as_view()),
+    
+    # FBV 방법
+    # path('<int:pk>/', views.single_post_page),
+    # path('', views.index),
     # '' = 내가 찾을 blog의 위치(경로)
     # view.index = views 안의 함수나 클래스를 찾아보겠다
 ]
