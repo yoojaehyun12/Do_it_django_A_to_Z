@@ -13,6 +13,7 @@
         <!-- <link href="css/styles.css" rel="stylesheet" /> -->
         <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.min.css' %}" media="screen">
         <link rel="stylesheet" href="{% static 'blog/css/style.css'%}"> 
+        <script src="https://kit.fontawesome.com/b068abe8e8.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <!-- Responsive navbar-->
@@ -34,8 +35,7 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-lg-8">
-                    <!-- Post content-->
-                    <article>
+                    <article>         
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
@@ -47,7 +47,11 @@
                             <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4"><img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="..." /></figure>
+                        {% if post.head_image %}
+                        <figure class="mb-4"><img class="img-fluid rounded" src="{{ post.head_image.url }}" alt="{{ post.title }} head_image" /></figure>
+                        {% else %}
+                            <img class="img-fluid rounded" src="https://picsum.photos/seed/{{ post.id }}/800/200" alt="random_image">
+                        {% endif %}
                         <!-- Post content-->
                         <section class="mb-5">
                             <!-- <p class="fs-5 mb-4">Science is an enterprise that should be cherished as an activity of the free human mind. Because it transforms who we are, how we live, and it gives us an understanding of our place in the universe.</p>
@@ -57,6 +61,21 @@
                             <p class="fs-5 mb-4">For me, the most fascinating interface is Twitter. I have odd cosmic thoughts every day and I realized I could hold them to myself or share them with people who might be interested.</p>
                             <p class="fs-5 mb-4">Venus has a runaway greenhouse effect. I kind of want to know what happened there because we're twirling knobs here on Earth without knowing the consequences of it. Mars once had running water. It's bone dry today. Something bad happened there as well.</p> -->
                             <p class="fs-5 mb-4">{{ post.content }}</p>
+                        {% if post.file_upload %}
+                        <a href="{{ post.file_upload.url }}" class="btn btn-outline-dark" role="button">
+                            Download:
+                            {% if post.get_file_ext == 'csv' %}
+                                <i class="fas fa-file-csv"></i>
+                            {% elif post.get_file_ext == 'xlsx' or post.get_file_ext == 'xls' %}
+                                <i class="fas fa-file-excel"></i>
+                            {% elif post.get_file_ext == 'docx' or post.get_file_ext == 'doc' %}
+                                <i class="fas fa-file-word"></i>
+                            {% else %}
+                                <i class="fas fa-file"></i>
+                            {% endif %}
+                            {{ post.get_file_name }}
+                        </a>
+                        {% endif %}
                         </section>
                     </article>
                     <!-- Comments section-->
