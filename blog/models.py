@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import os
 
 # Create your models here.
@@ -15,8 +16,10 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     # True 옵션 시 데이터가 저장 될때마다 현재 시간 저장
 
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
     def __str__(self): # __str__ 을 함수는 객체(텍스트)를 출력할때 자동으로 호출함
-        return f"[{self.pk}]{self.title}"
+        return f"[{self.pk}]{self.title} :: {self.author}"
         # self.pk : 해당 포스트의 pk 값(pk:primary key의 약자)
         # self.title : 해당 포스트의 title 값
     
