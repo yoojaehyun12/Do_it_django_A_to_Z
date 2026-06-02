@@ -22,7 +22,7 @@
     </div>
     <div class="card-footer text-muted">
         Posted on {{ p.created_at }} by
-        <a href="#">개발 예정</a>
+        <a href="#">{{ p.author | upper }}</a>
     </div>
 </div>
 {% endfor %}
