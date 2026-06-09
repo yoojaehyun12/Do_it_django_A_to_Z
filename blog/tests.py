@@ -64,7 +64,7 @@ class TestView(TestCase):
             content = 'Hello World, We are the world',
             author=self.user_trump
         )
-        self.assertEqual(post_000.get_absolute_url(), '/blog/1/')
+        self.assertEqual(self.post_001.get_absolute_url(), '/blog/1/')
         response = self.client.get(post_000.get_absolute_url())
         self.assertEqual(response.status_code, 200)
         soup = BeautifulSoup(response.content, 'html.parser')

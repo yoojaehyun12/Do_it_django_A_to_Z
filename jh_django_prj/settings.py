@@ -38,7 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'single_pages'
+    'single_pages',
+    'modbus',
+
+    # django-allauth 필수 등록 앱
+    'allauth',
+    'allauth.account',          # <-- 이 부분이 누락되면 질문하신 에러가 발생합니다!
+    'allauth.socialaccount',    # 소셜 로그인을 위한 앱
 ]
 
 MIDDLEWARE = [
@@ -49,6 +55,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # django-allauth 필수 미들웨어 추가
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'jh_django_prj.urls'
@@ -120,3 +129,8 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
+
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'blog', 'static')
+]

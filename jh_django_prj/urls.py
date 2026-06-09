@@ -25,6 +25,7 @@ urlpatterns = [
     # include는 blog.urls 파일을 참고해서 화면에 보여지는 것을 다운로드 함
     path('admin/', admin.site.urls),
     path('', include('single_pages.urls')),
+    path('modbus', include('modbus.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
